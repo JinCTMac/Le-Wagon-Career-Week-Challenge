@@ -1,6 +1,7 @@
 const radioStation = document.querySelector(".radio-station")
 const radioFooter = document.querySelector(".radio-footer")
 
+// we do fetch to access the content inside of the API
 fetch("https://teclead.de/recruiting/radios") //returns an response object
   .then(resp => resp.json()) //returns json
   .then(data => {
@@ -9,17 +10,13 @@ fetch("https://teclead.de/recruiting/radios") //returns an response object
       //iterate over array of objects
       //for each object, the radio name, frequency & img are stored within the HTML code inside a variable
       const content = `
-      <div class="border-bottom">
-        <div class="radio">
-          <button>${radio.name}</button>
-          <p class="frequency-bold">${radio.frequency}</p>
-        </div>
+        <button>${radio.name}</button>
+        <p class="frequency-bold">${radio.frequency}</p>
         <div class="image-display hide-box">
-        <i class="fas fa-minus-circle"></i>
+          <i class="fas fa-minus-circle"></i>
           <img src="${radio.image}">
           <i class="fas fa-plus-circle"></i>
-        </div>
-      </div>`;
+        </div>`;
 
       const footerContent = `
         <div class="footer-text hide-box">
@@ -50,7 +47,7 @@ const transformComponent = nodeArray => {
       }
 
       const footerDiv = Array.from(
-        document.querySelector(".radio-footer").children
+        document.querySelector(".radio-footer-1").children
       ); //returns all hidden footer divs
       footerDiv.map(div => {
         //iterate over each footer div
@@ -73,11 +70,11 @@ const transformComponent = nodeArray => {
 
 const hideDivs = () => {
   const footerDiv = Array.from(
-    document.querySelector(".radio-footer").children
+    document.querySelector(".radio-footer-1").children
   );
   // console.log(footerDiv);
   const imgDivs = Array.from(
-    document.querySelector(".radiolist-content").children
+    document.querySelector(".radio-station").children
   );
   imgDivs.map(imgDiv => {
     imgDiv.children[1].classList.add("hide-box");
